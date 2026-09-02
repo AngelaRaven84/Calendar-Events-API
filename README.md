@@ -18,13 +18,13 @@ The purpose of this project is to practise and demonstrate knowledge of:
 
 ## Planned Functions
 
-- [ ] Get all events
-- [ ] Get one event
-- [ ] Create an event
+- [x] Get all events
+- [x] Get one event
+- [x] Create an event
 - [ ] Update an event
 - [ ] Delete an event
-- [ ] Validate event data
-- [ ] Check for time conflicts
+- [x] Validate event data
+- [x] Check for time conflicts
 
 ## API Routes
 

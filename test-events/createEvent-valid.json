@@ -1,0 +1,7 @@
+{
+	"headers": {
+		"content-type": "application/json"
+	},
+	"body": "{\"title\":\"Portfolio planning\",\"date\":\"2026-09-07\",\"startTime\":\"10:00\",\"endTime\":\"11:00\"}",
+	"isBase64Encoded": false
+}
