@@ -18,3 +18,10 @@ functions:
       - httpApi:
           path: /events
           method: get
+
+  getEventById:
+    handler: functions/events/getEventById/index.handler
+    events:
+      - httpApi:
+          path: /events/{id}
+          method: get
