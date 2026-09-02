@@ -12,9 +12,9 @@ provider:
   # domain: api.example.com
 
 functions:
-  hello:
-    handler:
+  getEvents:
+    handler: functions/events/getEvents/index.handler
     events:
       - httpApi:
-          path:
-          method:
+          path: /events
+          method: get
