@@ -1,0 +1,10 @@
+{
+	"pathParameters": {
+		"id": "2"
+	},
+	"headers": {
+		"content-type": "application/json"
+	},
+	"body": "{\"date\":\"2026-09-04\",\"startTime\":\"13:30\",\"endTime\":\"14:30\"}",
+	"isBase64Encoded": false
+}

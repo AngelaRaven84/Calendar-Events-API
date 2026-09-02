@@ -21,7 +21,7 @@ The purpose of this project is to practise and demonstrate knowledge of:
 - [x] Get all events
 - [x] Get one event
 - [x] Create an event
-- [ ] Update an event
+- [x] Update an event
 - [ ] Delete an event
 - [x] Validate event data
 - [x] Check for time conflicts
@@ -33,7 +33,7 @@ The purpose of this project is to practise and demonstrate knowledge of:
 | GET    | `/events`      | Get all events  |
 | GET    | `/events/{id}` | Get one event   |
 | POST   | `/events`      | Create an event |
-| PUT    | `/events/{id}` | Update an event |
+| PATCH  | `/events/{id}` | Update an event |
 | DELETE | `/events/{id}` | Delete an event |
 
 ## Status

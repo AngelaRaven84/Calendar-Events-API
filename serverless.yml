@@ -32,3 +32,10 @@ functions:
       - httpApi:
           path: /events
           method: post
+
+  updateEvent:
+    handler: functions/events/updateEvent/index.handler
+    events:
+      - httpApi:
+          path: /events/{id}
+          method: patch

@@ -1,0 +1,10 @@
+{
+	"pathParameters": {
+		"id": "1"
+	},
+	"headers": {
+		"content-type": "application/json"
+	},
+	"body": "{}",
+	"isBase64Encoded": false
+}

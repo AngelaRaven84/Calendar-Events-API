@@ -1,0 +1,10 @@
+{
+	"pathParameters": {
+		"id": "999"
+	},
+	"headers": {
+		"content-type": "application/json"
+	},
+	"body": "{\"title\":\"Missing event\"}",
+	"isBase64Encoded": false
+}
