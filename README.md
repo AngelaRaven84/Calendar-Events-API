@@ -1,33 +1,30 @@
-# Calendar-Events-API
+# Calendar Events API
 
-A serverless REST API to create and deal with calendar events
-he project will be built as a freesatanding backend that in the future will be able to conntect to my Calendar-application.
+A serverless REST API for creating and managing calendar events.
 
-# Purpose
+The project will be built as a standalone backend that can be connected to my Calendar application in the future.
 
-he purpose is to excercise and show knowledge about:
-AWS Lambda
+## Purpose
 
-API Gateway
-Serverledss framework
-CRUD
+The purpose of this project is to practise and demonstrate knowledge of:
 
-Request-validation
-eroror handling and statusCodes
-testing through Insomnia
+- AWS Lambda
+- API Gateway
+- Serverless Framework
+- CRUD operations
+- Request validation
+- Error handling and HTTP status codes
+- API testing with Insomnia
 
-# Planned functions
+## Planned Functions
 
-[] Get all events
-
-[] Get one event
-[] Create an event
-
-[] Update an event
-[] Delete an event
-
-[] Validate event data
-[] Coheck time clashes
+- [ ] Get all events
+- [ ] Get one event
+- [ ] Create an event
+- [ ] Update an event
+- [ ] Delete an event
+- [ ] Validate event data
+- [ ] Check for time conflicts
 
 ## API Routes
 
@@ -39,6 +36,6 @@ testing through Insomnia
 | PUT    | `/events/{id}` | Update an event |
 | DELETE | `/events/{id}` | Delete an event |
 
-# Status
+## Status
 
-The project is in developmentT
+The project is currently under development.
