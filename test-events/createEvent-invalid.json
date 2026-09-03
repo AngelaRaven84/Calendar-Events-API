@@ -1,7 +1,0 @@
-{
-	"headers": {
-		"content-type": "application/json"
-	},
-	"body": "{\"title\":\"Invalid event\",\"date\":\"2026-09-07\",\"startTime\":\"11:00\",\"endTime\":\"10:00\"}",
-	"isBase64Encoded": false
-}
