@@ -22,7 +22,7 @@ The purpose of this project is to practise and demonstrate knowledge of:
 - [x] Get one event
 - [x] Create an event
 - [x] Update an event
-- [ ] Delete an event
+- [x] Delete an event
 - [x] Validate event data
 - [x] Check for time conflicts
 

@@ -39,3 +39,10 @@ functions:
       - httpApi:
           path: /events/{id}
           method: patch
+
+  deleteEvent:
+    handler: functions/events/deleteEvent/index.handler
+    events:
+      - httpApi:
+          path: /events/{id}
+          method: delete
