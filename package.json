@@ -19,6 +19,8 @@
 	},
 	"homepage": "https://github.com/AngelaRaven84/Calendar-Events-API#readme",
 	"dependencies": {
+		"@aws-sdk/client-dynamodb": "^3.1127.0",
+		"@aws-sdk/lib-dynamodb": "^3.1127.0",
 		"@middy/core": "^7.9.2",
 		"@middy/http-json-body-parser": "^7.9.2",
 		"http-errors": "^2.0.1",
