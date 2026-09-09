@@ -1,4 +1,4 @@
-import { PutCommand } from '@aws-sdk/lib-dynamodb';
+import { PutCommand, QueryCommand } from '@aws-sdk/lib-dynamodb';
 import { db } from './db.mjs';
 
 export const createEvent = async (calendarEvent) => {
@@ -10,4 +10,18 @@ export const createEvent = async (calendarEvent) => {
 	await db.send(command);
 
 	return calendarEvent;
+};
+
+export const getEvents = async (userId) => {
+	const command = new QueryCommand({
+		TableName: 'Calendar-db',
+		KeyConditionExpression: 'userId = :userId',
+		ExpressionAttributeValues: {
+			':userId': userId,
+		},
+	});
+
+	const result = await db.send(command);
+
+	return result.Items ?? [];
 };
