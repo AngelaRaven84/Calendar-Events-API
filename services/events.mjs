@@ -3,6 +3,7 @@ import {
 	QueryCommand,
 	GetCommand,
 	UpdateCommand,
+	DeleteCommand,
 } from '@aws-sdk/lib-dynamodb';
 import { db } from './db.mjs';
 
@@ -66,6 +67,21 @@ export const updateEvent = async (userId, id, calendarEvent) => {
 		},
 		ConditionExpression: 'attribute_exists(id)',
 		ReturnValues: 'ALL_NEW',
+	});
+
+	const result = await db.send(command);
+
+	return result.Attributes;
+};
+
+export const deleteEvent = async (userId, id) => {
+	const command = new DeleteCommand({
+		TableName: 'Calendar-db',
+		Key: {
+			userId,
+			id,
+		},
+		ReturnValues: 'ALL_OLD',
 	});
 
 	const result = await db.send(command);

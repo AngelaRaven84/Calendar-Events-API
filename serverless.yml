@@ -16,6 +16,7 @@ provider:
             - dynamodb:Query
             - dynamodb:GetItem
             - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
           Resource:
             Fn::Sub: arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Calendar-db
 
