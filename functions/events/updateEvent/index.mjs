@@ -2,7 +2,11 @@ import middy from '@middy/core';
 import httpJsonBodyParser from '@middy/http-json-body-parser';
 import createError from 'http-errors';
 
-import { events } from '../../../data/events.mjs';
+import {
+	getEventById,
+	getEvents,
+	updateEvent as saveUpdatedEvent,
+} from '../../../services/events.mjs';
 import {
 	eventSchema,
 	updateEventSchema,
@@ -14,15 +18,17 @@ import { sendResponse } from '../../../responses/index.mjs';
 const updateEvent = async (event) => {
 	const { id } = event.pathParameters;
 
-	const eventIndex = events.findIndex(
-		(calendarEvent) => calendarEvent.id === id,
-	);
+	const foundEvent = await getEventById('test-user', id);
 
-	if (eventIndex === -1) {
+	if (!foundEvent) {
 		throw new createError.NotFound('Event not found');
 	}
 
-	const { id: existingId, ...existingEventData } = events[eventIndex];
+	const {
+		id: existingId,
+		userId: existingUserId,
+		...existingEventData
+	} = foundEvent;
 
 	const mergedEventData = {
 		...existingEventData,
@@ -39,9 +45,11 @@ const updateEvent = async (event) => {
 		throw new createError.BadRequest(message);
 	}
 
+	const events = await getEvents(existingUserId);
+
 	const hasConflict = events.some(
-		(existingEvent, index) =>
-			index !== eventIndex &&
+		(existingEvent) =>
+			existingEvent.id !== existingId &&
 			existingEvent.date === result.data.date &&
 			result.data.startTime < existingEvent.endTime &&
 			result.data.endTime > existingEvent.startTime,
@@ -51,12 +59,11 @@ const updateEvent = async (event) => {
 		throw new createError.Conflict('Event conflicts with an existing event');
 	}
 
-	const updatedEvent = {
-		id: existingId,
-		...result.data,
-	};
-
-	events[eventIndex] = updatedEvent;
+	const updatedEvent = await saveUpdatedEvent(
+		existingUserId,
+		existingId,
+		result.data,
+	);
 
 	return sendResponse(200, updatedEvent);
 };
