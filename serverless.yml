@@ -20,7 +20,20 @@ provider:
           Resource:
             Fn::Sub: arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Calendar-db
 
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+          Resource:
+            Fn::Sub: arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Calendar-users
+
 functions:
+  createUser:
+    handler: functions/users/createUser/index.handler
+    events:
+      - httpApi:
+          path: /users
+          method: post
+
   getEvents:
     handler: functions/events/getEvents/index.handler
     events:
