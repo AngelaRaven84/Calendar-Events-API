@@ -3,7 +3,7 @@ import { db } from './db.mjs';
 
 export const createEvent = async (calendarEvent) => {
 	const command = new PutCommand({
-		TableName: 'calendar-events-db',
+		TableName: 'Calendar-db',
 		Item: calendarEvent,
 	});
 

@@ -8,6 +8,7 @@ import { eventSchema } from '../../../models/eventSchema/index.mjs';
 import { validateBody } from '../../../middlewares/validateBody/index.mjs';
 import { errorHandler } from '../../../middlewares/errorHandler/index.mjs';
 import { sendResponse } from '../../../responses/index.mjs';
+import { createEvent as saveEvent } from '../../../services/events.mjs';
 
 const createEvent = async (event) => {
 	const hasConflict = events.some(
@@ -22,11 +23,12 @@ const createEvent = async (event) => {
 	}
 
 	const newEvent = {
-		id: randomUUID(),
 		...event.body,
+		id: randomUUID(),
+		userId: 'test-user',
 	};
 
-	events.push(newEvent);
+	await saveEvent(newEvent);
 
 	return sendResponse(201, newEvent);
 };
