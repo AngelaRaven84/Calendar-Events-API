@@ -23,6 +23,7 @@ provider:
         - Effect: Allow
           Action:
             - dynamodb:PutItem
+            - dynamodb:GetItem
           Resource:
             Fn::Sub: arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/Calendar-users
 
@@ -33,6 +34,13 @@ functions:
       - httpApi:
           path: /users
           method: post
+
+  getUserById:
+    handler: functions/users/getUserById/index.handler
+    events:
+      - httpApi:
+          path: /users/{userId}
+          method: get
 
   getEvents:
     handler: functions/events/getEvents/index.handler
