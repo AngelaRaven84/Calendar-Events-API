@@ -11,9 +11,19 @@ import {
 	createEvent as saveEvent,
 	getEvents,
 } from '../../../services/events.mjs';
+import { getUserById } from '../../../services/users.mjs';
 
 const createEvent = async (event) => {
-	const events = await getEvents('test-user');
+	const { userId } = event.pathParameters;
+
+	const user = await getUserById(userId);
+
+	if (!user) {
+		throw new createError.NotFound('User not found');
+	}
+
+	const events = await getEvents(userId);
+
 	const hasConflict = events.some(
 		(existingEvent) =>
 			existingEvent.date === event.body.date &&
@@ -28,7 +38,7 @@ const createEvent = async (event) => {
 	const newEvent = {
 		...event.body,
 		id: randomUUID(),
-		userId: 'test-user',
+		userId: userId,
 	};
 
 	await saveEvent(newEvent);

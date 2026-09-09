@@ -46,7 +46,7 @@ functions:
     handler: functions/events/getEvents/index.handler
     events:
       - httpApi:
-          path: /events
+          path: /users/{userId}/events
           method: get
 
   getEventById:
@@ -60,7 +60,7 @@ functions:
     handler: functions/events/createEvent/index.handler
     events:
       - httpApi:
-          path: /events
+          path: /users/{userId}/events
           method: post
 
   updateEvent:
