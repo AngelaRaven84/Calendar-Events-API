@@ -6,9 +6,9 @@ import { errorHandler } from '../../../middlewares/errorHandler/index.mjs';
 import { sendResponse } from '../../../responses/index.mjs';
 
 const deleteEvent = async (event) => {
-	const { id } = event.pathParameters;
+	const { userId, id } = event.pathParameters;
 
-	const deletedEvent = await removeEvent('test-user', id);
+	const deletedEvent = await removeEvent(userId, id);
 
 	if (!deletedEvent) {
 		throw new createError.NotFound('Event not found');

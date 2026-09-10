@@ -16,9 +16,9 @@ import { errorHandler } from '../../../middlewares/errorHandler/index.mjs';
 import { sendResponse } from '../../../responses/index.mjs';
 
 const updateEvent = async (event) => {
-	const { id } = event.pathParameters;
+	const { userId, id } = event.pathParameters;
 
-	const foundEvent = await getEventById('test-user', id);
+	const foundEvent = await getEventById(userId, id);
 
 	if (!foundEvent) {
 		throw new createError.NotFound('Event not found');

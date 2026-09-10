@@ -53,7 +53,7 @@ functions:
     handler: functions/events/getEventById/index.handler
     events:
       - httpApi:
-          path: /events/{id}
+          path: /users/{userId}/events/{id}
           method: get
 
   createEvent:
@@ -67,12 +67,12 @@ functions:
     handler: functions/events/updateEvent/index.handler
     events:
       - httpApi:
-          path: /events/{id}
+          path: /users/{userId}/events/{id}
           method: patch
 
   deleteEvent:
     handler: functions/events/deleteEvent/index.handler
     events:
       - httpApi:
-          path: /events/{id}
+          path: /users/{userId}/events/{id}
           method: delete
