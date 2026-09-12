@@ -24,6 +24,7 @@
 		"@middy/core": "^7.9.2",
 		"@middy/http-json-body-parser": "^7.9.2",
 		"http-errors": "^2.0.1",
+		"jose": "^6.2.12",
 		"zod": "^4.5.4"
 	}
 }

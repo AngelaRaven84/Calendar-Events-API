@@ -14,7 +14,10 @@ const getUser = async (event) => {
 		throw new createError.NotFound('User not found');
 	}
 
-	return sendResponse(200, user);
+	return sendResponse(200, {
+		userId: user.userId,
+		name: user.name,
+	});
 };
 
 export const handler = middy(getUser).use(errorHandler());
