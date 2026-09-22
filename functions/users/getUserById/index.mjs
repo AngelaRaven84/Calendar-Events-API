@@ -3,10 +3,11 @@ import middy from '@middy/core';
 
 import { getUserById } from '../../../services/users.mjs';
 import { errorHandler } from '../../../middlewares/errorHandler/index.mjs';
+import { requireAuth } from '../../../middlewares/requireAuth/index.mjs';
 import { sendResponse } from '../../../responses/index.mjs';
 
 const getUser = async (event) => {
-	const { userId } = event.pathParameters;
+	const { userId } = event.auth;
 
 	const user = await getUserById(userId);
 
@@ -20,4 +21,4 @@ const getUser = async (event) => {
 	});
 };
 
-export const handler = middy(getUser).use(errorHandler());
+export const handler = middy(getUser).use(requireAuth()).use(errorHandler());

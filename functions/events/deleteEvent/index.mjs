@@ -3,10 +3,12 @@ import middy from '@middy/core';
 
 import { deleteEvent as removeEvent } from '../../../services/events.mjs';
 import { errorHandler } from '../../../middlewares/errorHandler/index.mjs';
+import { requireAuth } from '../../../middlewares/requireAuth/index.mjs';
 import { sendResponse } from '../../../responses/index.mjs';
 
 const deleteEvent = async (event) => {
-	const { userId, id } = event.pathParameters;
+	const { userId } = event.auth;
+	const { id } = event.pathParameters;
 
 	const deletedEvent = await removeEvent(userId, id);
 
@@ -20,4 +22,6 @@ const deleteEvent = async (event) => {
 	});
 };
 
-export const handler = middy(deleteEvent).use(errorHandler());
+export const handler = middy(deleteEvent)
+	.use(requireAuth())
+	.use(errorHandler());

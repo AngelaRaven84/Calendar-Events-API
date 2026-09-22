@@ -13,10 +13,12 @@ import {
 } from '../../../models/eventSchema/index.mjs';
 import { validateBody } from '../../../middlewares/validateBody/index.mjs';
 import { errorHandler } from '../../../middlewares/errorHandler/index.mjs';
+import { requireAuth } from '../../../middlewares/requireAuth/index.mjs';
 import { sendResponse } from '../../../responses/index.mjs';
 
 const updateEvent = async (event) => {
-	const { userId, id } = event.pathParameters;
+	const { userId } = event.auth;
+	const { id } = event.pathParameters;
 
 	const foundEvent = await getEventById(userId, id);
 
@@ -69,6 +71,7 @@ const updateEvent = async (event) => {
 };
 
 export const handler = middy(updateEvent)
+	.use(requireAuth())
 	.use(httpJsonBodyParser())
 	.use(validateBody(updateEventSchema))
 	.use(errorHandler());

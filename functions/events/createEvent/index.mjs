@@ -6,6 +6,7 @@ import { randomUUID } from 'node:crypto';
 import { eventSchema } from '../../../models/eventSchema/index.mjs';
 import { validateBody } from '../../../middlewares/validateBody/index.mjs';
 import { errorHandler } from '../../../middlewares/errorHandler/index.mjs';
+import { requireAuth } from '../../../middlewares/requireAuth/index.mjs';
 import { sendResponse } from '../../../responses/index.mjs';
 import {
 	createEvent as saveEvent,
@@ -14,7 +15,7 @@ import {
 import { getUserById } from '../../../services/users.mjs';
 
 const createEvent = async (event) => {
-	const { userId } = event.pathParameters;
+	const { userId } = event.auth;
 
 	const user = await getUserById(userId);
 
@@ -47,6 +48,7 @@ const createEvent = async (event) => {
 };
 
 export const handler = middy(createEvent)
+	.use(requireAuth())
 	.use(httpJsonBodyParser())
 	.use(validateBody(eventSchema))
 	.use(errorHandler());
